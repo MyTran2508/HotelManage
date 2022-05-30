@@ -9,18 +9,16 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DTO.Entities
 {
-    [Table("customer")]
+    [Table("customers")]
     public class Customer
     {
         [Key]
         public string Id { get; set; }
 
         [Required]
-        [StringLength(100)]
         public string CustomerName { get; set; }
 
         [Required]
-        [StringLength(10)]
         public string CustomerId { get; set; } // CMND
 
         public string Phonenumber { get; set; }

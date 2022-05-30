@@ -35,6 +35,12 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RoomName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KindOfRoom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RoomStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DateOut = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -44,14 +50,8 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RoomName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.KindOfRoom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RoomStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DateOut = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.CBRooms = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -125,6 +125,48 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(998, 559);
             this.dataGridView1.TabIndex = 59;
+            // 
+            // Id
+            // 
+            this.Id.HeaderText = "Mã ĐK";
+            this.Id.MinimumWidth = 6;
+            this.Id.Name = "Id";
+            this.Id.Width = 125;
+            // 
+            // RoomName
+            // 
+            this.RoomName.HeaderText = "Tên NV";
+            this.RoomName.MinimumWidth = 6;
+            this.RoomName.Name = "RoomName";
+            this.RoomName.Width = 150;
+            // 
+            // KindOfRoom
+            // 
+            this.KindOfRoom.HeaderText = "Số Phòng";
+            this.KindOfRoom.MinimumWidth = 6;
+            this.KindOfRoom.Name = "KindOfRoom";
+            this.KindOfRoom.Width = 150;
+            // 
+            // RoomStatus
+            // 
+            this.RoomStatus.HeaderText = "Khách Hàng";
+            this.RoomStatus.MinimumWidth = 6;
+            this.RoomStatus.Name = "RoomStatus";
+            this.RoomStatus.Width = 200;
+            // 
+            // Description
+            // 
+            this.Description.HeaderText = "Ngày Thuê";
+            this.Description.MinimumWidth = 6;
+            this.Description.Name = "Description";
+            this.Description.Width = 150;
+            // 
+            // DateOut
+            // 
+            this.DateOut.HeaderText = "Ngày Trả";
+            this.DateOut.MinimumWidth = 6;
+            this.DateOut.Name = "DateOut";
+            this.DateOut.Width = 150;
             // 
             // label5
             // 
@@ -201,48 +243,6 @@
             this.label6.TabIndex = 69;
             this.label6.Text = "Ngày Trả";
             // 
-            // Id
-            // 
-            this.Id.HeaderText = "Mã ĐK";
-            this.Id.MinimumWidth = 6;
-            this.Id.Name = "Id";
-            this.Id.Width = 125;
-            // 
-            // RoomName
-            // 
-            this.RoomName.HeaderText = "Tên NV";
-            this.RoomName.MinimumWidth = 6;
-            this.RoomName.Name = "RoomName";
-            this.RoomName.Width = 150;
-            // 
-            // KindOfRoom
-            // 
-            this.KindOfRoom.HeaderText = "Số Phòng";
-            this.KindOfRoom.MinimumWidth = 6;
-            this.KindOfRoom.Name = "KindOfRoom";
-            this.KindOfRoom.Width = 150;
-            // 
-            // RoomStatus
-            // 
-            this.RoomStatus.HeaderText = "Khách Hàng";
-            this.RoomStatus.MinimumWidth = 6;
-            this.RoomStatus.Name = "RoomStatus";
-            this.RoomStatus.Width = 200;
-            // 
-            // Description
-            // 
-            this.Description.HeaderText = "Ngày Thuê";
-            this.Description.MinimumWidth = 6;
-            this.Description.Name = "Description";
-            this.Description.Width = 150;
-            // 
-            // DateOut
-            // 
-            this.DateOut.HeaderText = "Ngày Trả";
-            this.DateOut.MinimumWidth = 6;
-            this.DateOut.Name = "DateOut";
-            this.DateOut.Width = 150;
-            // 
             // comboBox3
             // 
             this.comboBox3.FormattingEnabled = true;
@@ -251,20 +251,20 @@
             this.comboBox3.Size = new System.Drawing.Size(279, 35);
             this.comboBox3.TabIndex = 71;
             // 
-            // comboBox1
+            // CBRooms
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(31, 233);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(279, 35);
-            this.comboBox1.TabIndex = 72;
+            this.CBRooms.FormattingEnabled = true;
+            this.CBRooms.Location = new System.Drawing.Point(31, 233);
+            this.CBRooms.Name = "CBRooms";
+            this.CBRooms.Size = new System.Drawing.Size(279, 35);
+            this.CBRooms.TabIndex = 72;
             // 
             // ReservationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1365, 715);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.CBRooms);
             this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.label6);
@@ -287,6 +287,7 @@
             this.Name = "ReservationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản Lý Đặt Phòng";
+            this.Load += new System.EventHandler(this.ReservationForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -318,6 +319,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateOut;
         private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox CBRooms;
     }
 }

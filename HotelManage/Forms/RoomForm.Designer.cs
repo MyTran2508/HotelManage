@@ -101,6 +101,7 @@
             this.BtnInsert.TabIndex = 44;
             this.BtnInsert.Text = "Thêm";
             this.BtnInsert.UseVisualStyleBackColor = true;
+            this.BtnInsert.Click += new System.EventHandler(this.BtnInsert_Click);
             // 
             // GridViewRooms
             // 

@@ -11,12 +11,13 @@ namespace BusinessLogicLayer.Controllers
     public class RoomStatusController
     {
         // Make Room Status
-        public RoomStatus GetRoomStatus(string Id, string Name)
+        public RoomStatus CreateRoomStatus(string Id, string Name)
         {
-            RoomStatus roomStatus = new RoomStatus();
-            roomStatus.Id = Id; 
-            roomStatus.Name = Name; 
-            return roomStatus;  
+            return new RoomStatus
+            {
+                Id = Id,
+                Name = Name
+            };
         }
 
         // Get All Room Status
@@ -36,22 +37,98 @@ namespace BusinessLogicLayer.Controllers
             }
         }
     
-        // Create new Room Status
-        public bool InsertRoomStatus(string Id, string Name)
+        // Insert Room Status
+        public bool InsertRoomStatus(string Id, string Name, ref string error)
         {
             try
             {
                 using (var context = new Context())
                 {
-                    var roomSta = GetRoomStatus(Id, Name);
+                    var roomSta = CreateRoomStatus(Id, Name);
                     context.roomStatus.Add(roomSta);
                     context.SaveChanges();
+                    error = "Room Status Has Created!!!";
                     return true;
                 }
             }
             catch
             {
+                error = "Something Was Wrong When Add Room Status!!!";
                 return false;
+            }
+        }
+        
+        // Update Room Status
+        public bool UpdateRoomStatusById(string Id, string NewName, ref string error)
+        {
+            try
+            {
+                using(var context = new Context())
+                {
+                    var rs = context.roomStatus.
+                        Where(r => r.Id == Id).FirstOrDefault();
+                    if (rs != null)
+                    {
+                        rs.Name = NewName;
+                        context.SaveChanges();
+                        error = "Room Status Has Updated!!!";
+                        return true;
+                    }
+                    error = "Room Status Is Not Exist!!!";
+                    return false;
+
+                }
+            }
+            catch
+            {
+                error = "Something Was Wrong When Update Room Status!!!";
+                return false;
+            }
+        }
+
+        // Delete Room Status
+        public bool RemoveRoomStatusById(string Id, ref string error)
+        {
+            try
+            {
+                using (var context = new Context())
+                {
+                    var rs = context.roomStatus.
+                        Where(r => r.Id == Id).FirstOrDefault();
+                    if (rs != null)
+                    {
+                       context.roomStatus.Remove(rs);
+                        context.SaveChanges();
+                        error = "Room Status Has Deleted!!!";
+                        return true;
+                    }
+                    error = "Room Status Is Not Exist!!!";
+                    return false;
+
+                }
+            }
+            catch
+            {
+                error = "Something Was Wrong When Delete Room Status!!!";
+                return false;
+            }
+        }
+    
+        // Get Room Status By Id
+        public RoomStatus GetRoomStatusById(string Id)
+        {
+            try
+            {
+                using(var context = new Context())
+                {
+                    var rs = context.roomStatus.
+                        Where(r => r.Id==Id).FirstOrDefault();
+                    return rs;
+                }
+            }
+            catch
+            {
+                return null;
             }
         }
     }

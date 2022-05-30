@@ -8,6 +8,20 @@
         public override void Up()
         {
             CreateTable(
+                "dbo.employees",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        EmployeeName = c.String(nullable: false),
+                        Phonenumber = c.String(),
+                        Address = c.String(),
+                        Username = c.String(nullable: false, maxLength: 255),
+                        Password = c.String(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .Index(t => t.Username, unique: true);
+            
+            CreateTable(
                 "dbo.kind_of_rooms",
                 c => new
                     {
@@ -61,10 +75,12 @@
             DropForeignKey("dbo.rooms", "KindOfRoomId", "dbo.kind_of_rooms");
             DropIndex("dbo.rooms", new[] { "RoomStatusId" });
             DropIndex("dbo.rooms", new[] { "KindOfRoomId" });
+            DropIndex("dbo.employees", new[] { "Username" });
             DropTable("dbo.services");
             DropTable("dbo.rom_status");
             DropTable("dbo.rooms");
             DropTable("dbo.kind_of_rooms");
+            DropTable("dbo.employees");
         }
     }
 }

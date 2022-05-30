@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLogicLayer.Controllers;
+using HotelManage.Resources.Utils;
 
 namespace HotelManage.Forms
 {
@@ -26,39 +27,12 @@ namespace HotelManage.Forms
             rsc = new RoomStatusController();
         }
 
-        // Get DataTable
-        private DataTable GetDataTable(params string[] labels)
-        {
-            DataTable dt = new DataTable(); 
-            foreach(var label in labels)
-            {
-                dt.Columns.Add(label, typeof(string));
-            }
-            return dt;
-        }
-
-        // Fill Data ComboBox (Kind Of Room, Room Status)
-        private DataTable FillDataTable(dynamic s)
-        {
-            if(s != null)
-            {
-                string labelId = "Id", labelName = "Name";
-                DataTable dt = GetDataTable(labelId, labelName);
-
-                foreach (var k in s)
-                {
-                    dt.Rows.Add(k.Id, k.Name);
-                }
-                return dt;
-            }
-            return null;
-        }
 
         // Fill ComboBox KindOfRooms
         private void FillComboBoxKindOfRooms()
         {
             var kindOfRooms = kor.GetAllKindOfRooms();
-            DataTable dt = FillDataTable(kindOfRooms);
+            DataTable dt = Common.FillDataTable(kindOfRooms);
             if(dt != null)
             {
                 CBKindOfRom.DataSource = dt;
@@ -71,7 +45,7 @@ namespace HotelManage.Forms
         private void FillComboBoxRoomStatus()
         {
             var roomSta = rsc.GetAllRoomsStatus();
-            DataTable dt = FillDataTable(roomSta);
+            DataTable dt = Common.FillDataTable(roomSta);
             if (dt != null)
             {
                 CBRoomStatus.DataSource = dt;
@@ -87,8 +61,8 @@ namespace HotelManage.Forms
             var rooms = rc.GetAllRooms(ref error);
             if(rooms != null)
             {
-                DataTable dt = GetDataTable(
-                    "MP", 
+                DataTable dt = Common.GetDataTable(
+                    "Mã TT", 
                     "Loại Phòng",
                     "Tình Trạng", 
                     "Tên Phòng", 
@@ -111,39 +85,18 @@ namespace HotelManage.Forms
             }
         }
 
-        // Get Current Row Selected
-        private int GetCurrentRowSelected()
-        {
-            int rowIndex = this.GridViewRooms.CurrentCell.RowIndex;
-            return rowIndex;
-        }
-
-        // Get Value Of Cell
-        private string GetValueOfCellGridView(int RowIndex, int CellIndex)
-        {
-            return this.GridViewRooms.
-                Rows[RowIndex].Cells[CellIndex].
-                Value.ToString().Trim();
-        }
-
-        // Get Value TextBox
-        private string GetValueTextBox(TextBox tb)
-        {
-            return tb.Text.Trim();
-        }
-
-        // Get Value ComboBox
-        private string GetValueComboBox(ComboBox cb)
-        {
-            return cb.SelectedValue.ToString().Trim();
-        }
-
         private void FillTextBox()
         {
-            int currentRow = this.GetCurrentRowSelected();
-            TBId.Text = this.GetValueOfCellGridView(currentRow, 0);
-            TBName.Text = this.GetValueOfCellGridView(currentRow, 3);
-            TbDescription.Text = this.GetValueOfCellGridView(currentRow, 4);
+            int currentRow = Common.GetCurrentRowSelected(this.GridViewRooms);
+            if(currentRow != -1)
+            {
+                TBId.Text = Common.
+                GetValueOfCellGridView(this.GridViewRooms, currentRow, 0);
+                TBName.Text = Common.
+                    GetValueOfCellGridView(this.GridViewRooms, currentRow, 3);
+                TbDescription.Text = Common.
+                    GetValueOfCellGridView(this.GridViewRooms, currentRow, 4);
+            }
         }
 
         // Form Load
@@ -153,23 +106,6 @@ namespace HotelManage.Forms
             this.FillComboBoxRoomStatus();
             this.FillDataGridViewRooms();
             this.FillTextBox();
-            /* // Create Room Status
-             rsc.InsertRoomStatus("RST1", "Trống");
-             rsc.InsertRoomStatus("RST2", "Đang Sử Dụng");
-
-             // Insert Kind Of Room
-             kor.InsertKindOfRooms("KOR1", "Hạng A", 2, 500);
-             kor.InsertKindOfRooms("KOR2", "Hạng B", 5, 700);
-             kor.InsertKindOfRooms("KOR3", "Hạng C", 10, 1000);*/
-
-
-            /*  rc.InsertRoom(ref error, "ROO2", k1, rs1, "102");
-            //rc.InsertRoom(ref error, "ROO3", k1, rs1, "103");*/
-
-
-            /*this.FillComboBoxKindOfRooms();
-            this.FillComboBoxRoomStatus();
-            this.FillDataGridViewRooms();*/
         }
 
         // Event handler
@@ -179,9 +115,10 @@ namespace HotelManage.Forms
             try
             {
                 // Get current Index
-                int rowIndex = this.GetCurrentRowSelected();
+                int rowIndex = Common.GetCurrentRowSelected(this.GridViewRooms);
                 // Get Id
-                string Id = this.GetValueOfCellGridView(rowIndex, 0);
+                string Id = Common.
+                    GetValueOfCellGridView(this.GridViewRooms, rowIndex, 0);
 
                 // remove
                 string error = "";
@@ -204,14 +141,15 @@ namespace HotelManage.Forms
             try
             {
                 // Get current Index
-                int rowIndex = this.GetCurrentRowSelected();
+                int rowIndex = Common.GetCurrentRowSelected(this.GridViewRooms);
 
                 // Get Values
-                string id = this.GetValueOfCellGridView(rowIndex, 0);
-                string name = this.GetValueTextBox(TBName);
-                string description = this.GetValueTextBox(TbDescription);
-                string kindOfRoomId = this.GetValueComboBox(CBKindOfRom);
-                string roomStatusId = this.GetValueComboBox(CBRoomStatus);
+                string id = Common.
+                    GetValueOfCellGridView(this.GridViewRooms, rowIndex, 0);
+                string name = Common.GetValueTextBox(TBName);
+                string description = Common.GetValueTextBox(TbDescription);
+                string kindOfRoomId = Common.GetValueComboBox(CBKindOfRom);
+                string roomStatusId = Common.GetValueComboBox(CBRoomStatus);
 
                 string error = "";
                 bool isUpdated = rc.UpdateRoom(ref error, id, kindOfRoomId, roomStatusId, name, description);
@@ -232,6 +170,11 @@ namespace HotelManage.Forms
         private void GridViewRooms_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             this.FillTextBox();
+        }
+
+        private void BtnInsert_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

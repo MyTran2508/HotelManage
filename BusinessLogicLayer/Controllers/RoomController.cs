@@ -170,5 +170,31 @@ namespace BusinessLogicLayer.Controllers
             }
         }
     
+        // Get Room By StatusId
+        public List<Room> GetRoomsByRoomStatusId(string roomStatusId, ref string error)
+        {
+            try
+            {
+                using (var context = new Context())
+                {
+                    var rooms = context.rooms.
+                        Where(r => r.RoomStatusId == roomStatusId).ToList();
+                    foreach (var room in rooms)
+                    {
+                        var e = context.Entry(room);
+                        e.Reference("KindOfRoom").Load();
+                        e.Reference("RoomStatus").Load();
+                    }
+                    error = "Get All Rooms Success!!!";
+                    return rooms;
+                }
+            }
+            catch
+            {
+                error = "Something Was Wrong When Get Rooms!!!";
+                return null;
+            }
+        }
+    
     }
 }
