@@ -12,17 +12,28 @@ namespace DTO
     public class Context : DbContext
     {
         // Constructor
-        public Context() : base("name=hoteldata") { }
+        public Context() : base("name=hoteldata") 
+        { 
+            this.Configuration.LazyLoadingEnabled = true;
+            this.Configuration.ProxyCreationEnabled = true;
+        }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+        }
         // Khai bao cac bang
-       /* public DbSet<Customer> customers { get; set; }
-        public DbSet<Employee> employees { get; set; }
-        public DbSet<RoomStatus> romStatus { get; set; }
-        public DbSet<Room> rooms { get; set; }
-        public DbSet<KindOfRoom> kindOfRooms { get; set; }
-        public DbSet<Reservation> reservations { get; set; }*/
+        /* public DbSet<Customer> customers { get; set; }
+         public DbSet<Employee> employees { get; set; }
+         public DbSet<RoomStatus> romStatus { get; set; }
+         public DbSet<Room> rooms { get; set; }
+         public DbSet<KindOfRoom> kindOfRooms { get; set; }
+         public DbSet<Reservation> reservations { get; set; }*/
 
         public DbSet<Service> services { get; set; }
-        public DbSet<Employee> employees { get; set; }
+        // public DbSet<Employee> employees { get; set; }
+        public DbSet<Room> rooms { get; set; }  
+        public DbSet<KindOfRoom> kindOfRooms { get; set;}
+
+        public DbSet<RoomStatus> roomStatus { get; set; }
     }
 }

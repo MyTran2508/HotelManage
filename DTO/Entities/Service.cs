@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace DTO.Entities
 {
     // Dich Vu
-    [Table("service")]
+    [Table("services")]
     public class Service
     {
         [Key]

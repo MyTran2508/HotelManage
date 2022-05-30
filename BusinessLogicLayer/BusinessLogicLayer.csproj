@@ -55,6 +55,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\RoomController.cs" />
+    <Compile Include="Controllers\KindOfRoomController.cs" />
+    <Compile Include="Controllers\RoomStatusController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
