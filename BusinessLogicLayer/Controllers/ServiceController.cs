@@ -50,7 +50,7 @@ namespace BusinessLogicLayer.Controllers
                     var service = context.services.Where(sv => sv.Id == Id).FirstOrDefault();   
                     if(service != null)
                     {
-                        error = "Get Service By Id Success!!!";
+                        error = "Get Service Success!!!";
                     }
                     error = "Service Is Not Exsit!!!";
                     return service;
@@ -58,7 +58,7 @@ namespace BusinessLogicLayer.Controllers
             }
             catch
             {
-                error = "Get Service By Id Failure!!!";
+                error = $"Something Was Wrong When Get Service With Id = {Id}!!!";
                 return null;
             }
         }
@@ -75,22 +75,24 @@ namespace BusinessLogicLayer.Controllers
             {
                 using (var context = new Context())
                 {
-                    // Check service
+                    // Make Service
                     var service = this.GetService(Id, Name, Price);
+                    // Check service
                     if (service != null)
                     {
                         context.services.Add(service);
                         var numOfState = context.SaveChanges();
-                        error = $"Insert {numOfState} Success!!!";
+                        error = $"Add New Service Success!!!";
                         return true;
                     }
-                    error = "Service invalid!!!";
+                    error = "Service Invalid!!!";
                     return false;
                 }
             }
             catch
             {
-                error = "Add New Service Failure!!!";
+                error = 
+                    "Something Was Wrong When Add New Service!!!";
                 return false;
             }
         }
@@ -114,7 +116,7 @@ namespace BusinessLogicLayer.Controllers
                         var numOfState = context.SaveChanges();
                         if(numOfState > 0)
                         {
-                            error = "Update Service By Id Success!!!";
+                            error = "Update Service Success!!!";
                             return true;
                         }
                         error = "Service Has No Change!!!";
@@ -126,7 +128,8 @@ namespace BusinessLogicLayer.Controllers
             }
             catch
             {
-                error = "Something Was Wrong!!!";
+                error = 
+                    $"Something Was Wrong When Update Service With Id = {Id}!!!";
                 return false;
             }
         }
@@ -145,10 +148,10 @@ namespace BusinessLogicLayer.Controllers
                         var numOfState = context.SaveChanges();
                         if(numOfState > 0)
                         {
-                            error = "Remove Service By Id Success!!!";
+                            error = "Remove Service Success!!!";
                             return true;
                         }
-                        error = "Remove Service By Id Failure!!!";
+                        error = "Remove Service Failure!!!";
                         return false;
                     }
                     error = "Service Is Not Exist!!!";
@@ -157,7 +160,7 @@ namespace BusinessLogicLayer.Controllers
             }
             catch
             {
-                error = "Something was wrong!!!";
+                error = "Something Was Wrong When Remove Service!!!";
                 return false;
             }
         }

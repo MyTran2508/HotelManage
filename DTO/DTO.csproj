@@ -60,13 +60,9 @@
     <Compile Include="Entities\Room.cs" />
     <Compile Include="Entities\RoomStatus.cs" />
     <Compile Include="Entities\Service.cs" />
-    <Compile Include="Migrations\202205281629070_db.cs" />
-    <Compile Include="Migrations\202205281629070_db.designer.cs">
-      <DependentUpon>202205281629070_db.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202205290347203_employee_v1.cs" />
-    <Compile Include="Migrations\202205290347203_employee_v1.designer.cs">
-      <DependentUpon>202205290347203_employee_v1.cs</DependentUpon>
+    <Compile Include="Migrations\202205301436479_db_v1.cs" />
+    <Compile Include="Migrations\202205301436479_db_v1.designer.cs">
+      <DependentUpon>202205301436479_db_v1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,11 +72,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202205281629070_db.resx">
-      <DependentUpon>202205281629070_db.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202205290347203_employee_v1.resx">
-      <DependentUpon>202205290347203_employee_v1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202205301436479_db_v1.resx">
+      <DependentUpon>202205301436479_db_v1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

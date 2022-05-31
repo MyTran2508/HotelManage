@@ -7,13 +7,13 @@ namespace DTO.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class db : IMigrationMetadata
+    public sealed partial class db_v1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(db));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(db_v1));
         
         string IMigrationMetadata.Id
         {
-            get { return "202205281629070_db"; }
+            get { return "202205301436479_db_v1"; }
         }
         
         string IMigrationMetadata.Source

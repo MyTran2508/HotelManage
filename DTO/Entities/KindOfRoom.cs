@@ -9,21 +9,25 @@ using System.Threading.Tasks;
 namespace DTO.Entities
 {
     // Loai Phong
-    [Table("kind_of_room")]
+    [Table("kind_of_rooms")]
     public class KindOfRoom
     {
         [Key]
-        public int Id { get; set; }
+        // Mã Loại Phòng
+        public string Id { get; set; }
         
-        // Ten loai phong
+        // Tên Loại Phòng
         [Required]
         public string Name { get; set; }
 
-        // So nguoi toi da
+        // Số Người Tối Đa
         public int Max { get; set; }
 
-        // Don gia
+        // Đơn Giá
         public float Price { get; set; }
+
+        // Colection navigation
+       //public virtual List<Room> Rooms { get; set; }
 
     }
 }
